@@ -9,8 +9,8 @@ public partial class Player : CharacterBody2D
 	[Export]
 	public float Speed = 100.0f;
 	/// <summary>
-    /// Timer to use for idle animation triggering.
-    /// </summary>
+	/// Timer to use for idle animation triggering.
+	/// </summary>
 	[Export]
 	public Timer IdleTimer;
 
@@ -125,8 +125,8 @@ public partial class Player : CharacterBody2D
 	}
 
 	/// <summary>
-    /// Actions to perform on idle state change.
-    /// </summary>
+	/// Actions to perform on idle state change.
+	/// </summary>
 	private void HandleIdleTimeout()
 	{
 		_animation.Animation = "idle";
