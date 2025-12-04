@@ -194,8 +194,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c3st"]
 size = Vector2(5, 10)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("IdleTimer")]
 script = ExtResource("1_cs1tg")
+IdleTimer = NodePath("IdleTimer")
 
 [node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qk6i7")
@@ -204,3 +205,6 @@ animation = &"interact"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 5)
 shape = SubResource("RectangleShape2D_6c3st")
+
+[node name="IdleTimer" type="Timer" parent="."]
+wait_time = 2.0
