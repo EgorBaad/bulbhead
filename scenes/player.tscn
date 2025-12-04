@@ -99,8 +99,8 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_lxlsd")
 }],
-"loop": true,
-"name": &"interaction",
+"loop": false,
+"name": &"interact",
 "speed": 10.0
 }, {
 "frames": [{
@@ -130,7 +130,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -159,7 +159,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -188,7 +188,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c3st"]
@@ -197,8 +197,9 @@ size = Vector2(5, 10)
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_cs1tg")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerAnimation" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qk6i7")
+animation = &"interact"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 5)
