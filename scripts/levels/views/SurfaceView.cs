@@ -9,9 +9,14 @@ public partial class SurfaceView : Node2D
 {
 	[Export]
 	public Sprite2D SurfaceBackground;
+
+	[Signal]
+	public delegate void ViewClosedEventHandler();
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		AddToGroup("SurfaceViews");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,5 +27,6 @@ public partial class SurfaceView : Node2D
 	public void Close()
 	{
 		Visible = false;
+		EmitSignal(SignalName.ViewClosed);
 	}
 }

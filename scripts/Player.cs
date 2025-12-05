@@ -21,6 +21,7 @@ public partial class Player : CharacterBody2D
 	public delegate void InteractionEventHandler();
 
 	private AnimatedSprite2D _animation;
+	private bool _isDisabled = false;
 
 	public override void _Ready()
 	{
@@ -30,6 +31,11 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_isDisabled)
+		{
+			return;
+		}
+		
 		if (Input.IsActionJustPressed("interact"))
 		{
 			HandleInteraction();
@@ -111,6 +117,19 @@ public partial class Player : CharacterBody2D
 		{
 			IdleTimer.Stop();
 		}
+	}
+
+	public void Disable()
+	{
+		Velocity = Vector2.Zero;
+		_isDisabled = true;
+		_animation.Animation = "default";
+		_animation.Play();
+	}
+
+	public void Enable()
+	{
+		_isDisabled = false;
 	}
 
 	/// <summary>

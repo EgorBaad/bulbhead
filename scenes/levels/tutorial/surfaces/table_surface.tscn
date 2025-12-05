@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://nl66iufv1rch"]
+
+[ext_resource type="PackedScene" uid="uid://dos0mkb1sa6gm" path="res://scenes/levels/views/surface_view.tscn" id="1_jjnln"]
+[ext_resource type="Texture2D" uid="uid://duuygn761g05g" path="res://assets/images/surfaces/Table.png" id="2_2bku8"]
+
+[node name="TableSurface" node_paths=PackedStringArray("SurfaceBackground") instance=ExtResource("1_jjnln")]
+SurfaceBackground = NodePath("Background")
+
+[node name="Background" type="Sprite2D" parent="." index="1"]
+z_index = 100
+position = Vector2(576, 320)
+texture = ExtResource("2_2bku8")

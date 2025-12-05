@@ -1,21 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://sw2jw0457no5"]
+[gd_scene load_steps=9 format=3 uid="uid://sw2jw0457no5"]
 
 [ext_resource type="PackedScene" uid="uid://by37peow3kepc" path="res://scenes/levels/level.tscn" id="1_6v5o0"]
 [ext_resource type="PackedScene" uid="uid://wsrtu312t4ud" path="res://scenes/player.tscn" id="2_kmgkv"]
+[ext_resource type="Script" uid="uid://bnhy3ey6yab33" path="res://scripts/levels/tutorial/Tutorial.cs" id="2_mxxi8"]
 [ext_resource type="PackedScene" uid="uid://bfddo50okkvh7" path="res://scenes/objects/interactible/door.tscn" id="3_ushbe"]
 [ext_resource type="PackedScene" uid="uid://dvkxpvgxs8hen" path="res://scenes/objects/interactible/table.tscn" id="4_7klve"]
 [ext_resource type="Texture2D" uid="uid://cdfkc3r6g0ka0" path="res://assets/images/objects/common/doors/door_wooden_gray_open.png" id="4_m6rfe"]
 [ext_resource type="Texture2D" uid="uid://cwp5p8scluut7" path="res://assets/images/objects/common/doors/door_wooden_gray_closed.png" id="5_63nf7"]
+[ext_resource type="PackedScene" uid="uid://nl66iufv1rch" path="res://scenes/levels/tutorial/surfaces/table_surface.tscn" id="7_63nf7"]
 
 [node name="Tutorial" instance=ExtResource("1_6v5o0")]
+script = ExtResource("2_mxxi8")
 
-[node name="Door" parent="." index="0" instance=ExtResource("3_ushbe")]
+[node name="Door" parent="Viewport" index="0" instance=ExtResource("3_ushbe")]
 position = Vector2(282, 331)
 OpenDoorTexture = ExtResource("4_m6rfe")
 ClosedDoorTexture = ExtResource("5_63nf7")
 
-[node name="Table" parent="." index="1" instance=ExtResource("4_7klve")]
+[node name="Table" parent="Viewport" index="1" instance=ExtResource("4_7klve")]
 position = Vector2(335, 349)
 
-[node name="Player" parent="." index="2" instance=ExtResource("2_kmgkv")]
+[node name="Player" parent="Viewport" index="2" instance=ExtResource("2_kmgkv")]
 position = Vector2(423, 345)
+
+[node name="TableSurface" parent="." index="1" instance=ExtResource("7_63nf7")]
+visible = false
+
+[connection signal="TableInteracted" from="Viewport/Table" to="." method="OnTableInteracted"]
