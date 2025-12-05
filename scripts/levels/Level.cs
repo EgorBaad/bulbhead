@@ -17,7 +17,7 @@ public partial class Level : Node2D
 	public override void _Process(double delta)
 	{
 	}
-
+	
 	public void OnCanSelectInteractible(InteractibleObject obj)
 	{
 		//Deselect current interactible first
@@ -36,6 +36,14 @@ public partial class Level : Node2D
 		if (_selectedInteractible == obj)
 		{
 			_selectedInteractible = null;
+		}
+	}
+
+	public void OnPlayerInteraction()
+	{
+		if (_selectedInteractible is not null)
+		{
+			_selectedInteractible.Interact();
 		}
 	}
 }

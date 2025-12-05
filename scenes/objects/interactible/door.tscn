@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfddo50okkvh7"]
+
+[ext_resource type="PackedScene" uid="uid://cgkjbss1qmt8u" path="res://scenes/objects/interactible_object.tscn" id="1_pp1f5"]
+[ext_resource type="Texture2D" uid="uid://cwp5p8scluut7" path="res://assets/images/objects/common/doors/door_wooden_gray_closed.png" id="2_5qeyy"]
+[ext_resource type="Script" uid="uid://b7k7a04wl1k8l" path="res://scripts/objects/interactible/Door.cs" id="2_ksi16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ksi16"]
+size = Vector2(12, 29)
+
+[node name="Door" node_paths=PackedStringArray("InteractionArea", "ObjectSprite") instance=ExtResource("1_pp1f5")]
+script = ExtResource("2_ksi16")
+IsOpen = false
+NeedsKey = false
+KeyId = ""
+OpenDoorTexture = null
+ClosedDoorTexture = null
+InteractionArea = NodePath("InteractionArea")
+ObjectSprite = NodePath("ObjectSprite")
+InteractionText = "Door"
+
+[node name="InteractionArea" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_ksi16")
+
+[node name="ObjectSprite" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_5qeyy")

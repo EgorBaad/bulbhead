@@ -89,4 +89,9 @@ public partial class InteractibleObject : Area2D
 		GetNode<Label>("InteractionText").Visible = false;
 		EmitSignal(SignalName.ObjectDeselected, this);
 	}
+
+	public virtual void Interact()
+	{
+		GD.Print("No interaction logic defined! Check object " + this);
+	}
 }
