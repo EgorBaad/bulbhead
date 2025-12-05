@@ -19,6 +19,20 @@ public partial class InteractibleObject : Area2D
 	private Sprite2D ObjectSprite;
 
 	/// <summary>
+	/// Object can be selected as primary interaction
+	/// </summary>
+	/// <param name="obj">Object that emitted the signal</param>
+	[Signal]
+	public delegate void CanSelectEventHandler(InteractibleObject obj);
+
+	/// <summary>
+	/// Object is deselected. Emitted by interactible upon deselection by moving out of range or by calling DeselectInteractible() method.
+	/// </summary>
+	/// <param name="obj">Object that emitted the signal</param>
+	[Signal]
+	public delegate void ObjectDeselectedEventHandler(InteractibleObject obj);
+
+	/// <summary>
 	/// Material used to highlight the object when interaction is available.
 	/// </summary>
 	private ShaderMaterial _highlightMaterial = new ShaderMaterial
@@ -34,19 +48,37 @@ public partial class InteractibleObject : Area2D
 
 	public void OnBodyEntered(Node2D body)
 	{
-		//When player is in range, highlight the object
+		//When player is in range, let wrappers know it can be selected
 		if (body is Player)
 		{
-			ObjectSprite.Material = _highlightMaterial;
+			EmitSignal(SignalName.CanSelect, this);
 		}
 	}
 
 	public void OnBodyExited(Node2D body)
 	{
-		//Player left range, remove highlight
+		//Player left range, deselect
 		if (body is Player)
 		{
-			ObjectSprite.Material = null;
+			DeselectInteractible();
 		}
+	}
+
+	/// <summary>
+	/// Mark interactible as selected
+	/// </summary>
+	public void SelectInteractible()
+	{
+		GD.Print("Object selected");
+		ObjectSprite.Material = _highlightMaterial;
+	}
+
+	/// <summary>
+	/// Remove selection
+	/// </summary>
+	public void DeselectInteractible()
+	{
+		ObjectSprite.Material = null;
+		EmitSignal(SignalName.ObjectDeselected, this);
 	}
 }
