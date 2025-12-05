@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvkxpvgxs8hen"]
+
+[ext_resource type="PackedScene" uid="uid://cgkjbss1qmt8u" path="res://scenes/objects/interactible_object.tscn" id="1_p0nrp"]
+[ext_resource type="Script" uid="uid://dft6rtd5cpsnq" path="res://scripts/objects/interactible/Table.cs" id="2_oqv2m"]
+[ext_resource type="Texture2D" uid="uid://3daljvvfde2x" path="res://assets/images/objects/common/tables/table_wooden_gray.png" id="2_sw74w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oqv2m"]
+size = Vector2(24, 17)
+
+[node name="Table" node_paths=PackedStringArray("InteractionArea", "ObjectSprite") instance=ExtResource("1_p0nrp")]
+script = ExtResource("2_oqv2m")
+InteractionArea = NodePath("InteractionArea")
+ObjectSprite = NodePath("ObjectSprite")
+
+[node name="InteractionText" parent="." index="0"]
+text = "Table"
+
+[node name="InteractionArea" type="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_oqv2m")
+
+[node name="ObjectSprite" type="Sprite2D" parent="." index="2"]
+texture = ExtResource("2_sw74w")
