@@ -15,12 +15,14 @@ script = ExtResource("1_jyhfs")
 [node name="Level" parent="." instance=ExtResource("2_tbgi4")]
 
 [node name="Player" parent="Level" instance=ExtResource("1_o5qli")]
+z_index = 1
 position = Vector2(444, 324)
 
 [node name="InteractibleObject2" parent="Level" node_paths=PackedStringArray("InteractionArea", "ObjectSprite") instance=ExtResource("2_0wfyh")]
 position = Vector2(547, 331)
 InteractionArea = NodePath("InteractionArea")
 ObjectSprite = NodePath("ObjectSprite")
+InteractionText = "Open"
 
 [node name="InteractionArea" type="CollisionShape2D" parent="Level/InteractibleObject2"]
 position = Vector2(0, 0.5)
@@ -33,6 +35,7 @@ texture = ExtResource("3_sugp2")
 position = Vector2(530, 331)
 InteractionArea = NodePath("InteractionArea")
 ObjectSprite = NodePath("ObjectSprite")
+InteractionText = "Door"
 
 [node name="InteractionArea" type="CollisionShape2D" parent="Level/InteractibleObject"]
 position = Vector2(0, 0.5)

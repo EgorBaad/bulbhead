@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgkjbss1qmt8u"]
+[gd_scene load_steps=3 format=3 uid="uid://cgkjbss1qmt8u"]
 
 [ext_resource type="Script" uid="uid://5v486kptcrw2" path="res://scripts/objects/InteractibleObject.cs" id="1_vlis2"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_vlis2"]
+font_size = 10
+
 [node name="InteractibleObject" type="Area2D"]
 script = ExtResource("1_vlis2")
+
+[node name="InteractionText" type="Label" parent="."]
+visible = false
+z_index = 100
+offset_right = 40.0
+offset_bottom = 23.0
+label_settings = SubResource("LabelSettings_vlis2")

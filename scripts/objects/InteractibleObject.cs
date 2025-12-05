@@ -16,7 +16,13 @@ public partial class InteractibleObject : Area2D
 	/// Sprite of the interactible object.
 	/// </summary>
 	[Export]
-	private Sprite2D ObjectSprite;
+	public Sprite2D ObjectSprite;
+
+	/// <summary>
+	/// Text to show for interaction prompt.
+	/// </summary>
+	[Export]
+	public string InteractionText = "Interact";
 
 	/// <summary>
 	/// Object can be selected as primary interaction
@@ -44,6 +50,7 @@ public partial class InteractibleObject : Area2D
 	{
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
+		GetNode<Label>("InteractionText").Text = InteractionText;
 	}
 
 	public void OnBodyEntered(Node2D body)
@@ -70,6 +77,7 @@ public partial class InteractibleObject : Area2D
 	public void SelectInteractible()
 	{
 		ObjectSprite.Material = _highlightMaterial;
+		GetNode<Label>("InteractionText").Visible = true;
 	}
 
 	/// <summary>
@@ -78,6 +86,7 @@ public partial class InteractibleObject : Area2D
 	public void DeselectInteractible()
 	{
 		ObjectSprite.Material = null;
+		GetNode<Label>("InteractionText").Visible = false;
 		EmitSignal(SignalName.ObjectDeselected, this);
 	}
 }
