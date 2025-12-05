@@ -1,60 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://fpyxui41lyic"]
+[gd_scene load_steps=3 format=3 uid="uid://fpyxui41lyic"]
 
 [ext_resource type="Script" uid="uid://bw56308g7urg3" path="res://scripts/Main.cs" id="1_jyhfs"]
-[ext_resource type="PackedScene" uid="uid://wsrtu312t4ud" path="res://scenes/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://cgkjbss1qmt8u" path="res://scenes/objects/interactible_object.tscn" id="2_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://by37peow3kepc" path="res://scenes/levels/level.tscn" id="2_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://cwp5p8scluut7" path="res://assets/images/objects/common/doors/door_wooden_gray_closed.png" id="3_sugp2"]
-[ext_resource type="PackedScene" uid="uid://bfddo50okkvh7" path="res://scenes/objects/interactible/door.tscn" id="6_tefeu"]
-[ext_resource type="Texture2D" uid="uid://cdfkc3r6g0ka0" path="res://assets/images/objects/common/doors/door_wooden_gray_open.png" id="7_o6xl0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(12, 29)
+[ext_resource type="PackedScene" uid="uid://sw2jw0457no5" path="res://scenes/levels/tutorial/tutorial.tscn" id="2_0wfyh"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jyhfs")
 
-[node name="Level" parent="." instance=ExtResource("2_tbgi4")]
-
-[node name="Player" parent="Level" instance=ExtResource("1_o5qli")]
-z_index = 1
-position = Vector2(444, 324)
-
-[node name="InteractibleObject2" parent="Level" node_paths=PackedStringArray("InteractionArea", "ObjectSprite") instance=ExtResource("2_0wfyh")]
-position = Vector2(547, 331)
-InteractionArea = NodePath("InteractionArea")
-ObjectSprite = NodePath("ObjectSprite")
-InteractionText = "Open"
-
-[node name="InteractionArea" type="CollisionShape2D" parent="Level/InteractibleObject2"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="ObjectSprite" type="Sprite2D" parent="Level/InteractibleObject2"]
-texture = ExtResource("3_sugp2")
-
-[node name="InteractibleObject" parent="Level" node_paths=PackedStringArray("InteractionArea", "ObjectSprite") instance=ExtResource("2_0wfyh")]
-position = Vector2(530, 331)
-InteractionArea = NodePath("InteractionArea")
-ObjectSprite = NodePath("ObjectSprite")
-InteractionText = "Door"
-
-[node name="InteractionArea" type="CollisionShape2D" parent="Level/InteractibleObject"]
-position = Vector2(0, 0.5)
-shape = SubResource("RectangleShape2D_sugp2")
-
-[node name="ObjectSprite" type="Sprite2D" parent="Level/InteractibleObject"]
-texture = ExtResource("3_sugp2")
-
-[node name="Door" parent="Level" instance=ExtResource("6_tefeu")]
-position = Vector2(377, 337)
-OpenDoorTexture = ExtResource("7_o6xl0")
-ClosedDoorTexture = ExtResource("3_sugp2")
-
-[connection signal="Interaction" from="Level/Player" to="Level" method="OnPlayerInteraction"]
-[connection signal="CanSelect" from="Level/InteractibleObject2" to="Level" method="OnCanSelectInteractible"]
-[connection signal="ObjectDeselected" from="Level/InteractibleObject2" to="Level" method="OnInteractibleDeselected"]
-[connection signal="CanSelect" from="Level/InteractibleObject" to="Level" method="OnCanSelectInteractible"]
-[connection signal="ObjectDeselected" from="Level/InteractibleObject" to="Level" method="OnInteractibleDeselected"]
-[connection signal="CanSelect" from="Level/Door" to="Level" method="OnCanSelectInteractible"]
-[connection signal="ObjectDeselected" from="Level/Door" to="Level" method="OnInteractibleDeselected"]
+[node name="Tutorial" parent="." instance=ExtResource("2_0wfyh")]

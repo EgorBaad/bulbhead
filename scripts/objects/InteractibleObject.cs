@@ -50,6 +50,9 @@ public partial class InteractibleObject : Area2D
 	{
 		BodyEntered += OnBodyEntered;
 		BodyExited += OnBodyExited;
+
+		AddToGroup("InteractibleObjects");
+
 		GetNode<Label>("InteractionText").Text = InteractionText;
 	}
 

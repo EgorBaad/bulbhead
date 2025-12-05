@@ -11,6 +11,11 @@ public partial class Level : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		foreach (InteractibleObject interactible in GetTree().GetNodesInGroup("InteractibleObjects"))
+		{
+			interactible.CanSelect += OnCanSelectInteractible;
+			interactible.ObjectDeselected += OnInteractibleDeselected;
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
