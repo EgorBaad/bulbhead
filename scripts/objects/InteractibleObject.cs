@@ -69,7 +69,6 @@ public partial class InteractibleObject : Area2D
 	/// </summary>
 	public void SelectInteractible()
 	{
-		GD.Print("Object selected");
 		ObjectSprite.Material = _highlightMaterial;
 	}
 
