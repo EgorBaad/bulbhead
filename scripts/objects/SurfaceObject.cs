@@ -1,16 +1,19 @@
 using Godot;
+using Bulbhead.Objects.Extensions;
 using System;
 
 /// <summary>
 /// A close-up interactive surface object
 /// </summary>
-public partial class SurfaceObject : Node2D
+public partial class SurfaceObject : Node2D, IDraggable
 {
 	/// <summary>
 	/// Sprite of the surface object.
 	/// </summary>
 	[Export]
 	public Sprite2D ObjectSprite;
+
+	public bool _isDragging { get; set; }
 
 	/// <summary>
 	/// Shader material used to highlight when the interaction is available
@@ -19,15 +22,18 @@ public partial class SurfaceObject : Node2D
 	{
 		Shader = GD.Load<Shader>("res://assets/shaders/outline.gdshader"),
 	};
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		Control interactionArea = GetNode<Control>("InteractionArea");
-
+		Button interactionArea = GetNode<Button>("InteractionArea");
 
 		AddToGroup("SurfaceObjects");
 		interactionArea.MouseEntered += OnMouseEntered;
 		interactionArea.MouseExited += OnMouseExited;
+		interactionArea.GuiInput += OnInteractionAreaGuiInput;
+		interactionArea.ButtonDown += () => { _isDragging = true; };
+		interactionArea.ButtonUp += () => { _isDragging = false; };
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,6 +48,27 @@ public partial class SurfaceObject : Node2D
 
 	public void OnMouseExited()
 	{
-		ObjectSprite.Material = null;
+		if (!_isDragging)
+		{
+			ObjectSprite.Material = null;
+		}
 	}
+
+	public void OnInteractionAreaGuiInput(InputEvent inputEvent)
+	{
+		if (inputEvent is InputEventMouseMotion motionEvent && _isDragging)
+		{
+			PerformDrag(motionEvent);
+		}
+	}
+
+	/// <summary>
+	/// Perform drag operation
+	/// </summary>
+	/// <param name="motionEvent">Mouse motion event</param>
+	public void PerformDrag(InputEventMouseMotion motionEvent)
+	{
+		this.DefaultPerformDrag(motionEvent);
+	}
+
 }

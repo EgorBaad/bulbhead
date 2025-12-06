@@ -1,5 +1,9 @@
+namespace Bulbhead.Objects.Extensions;
+using Godot;
+using System;
+
 public interface IDraggable
 {
-    void OnDragStart();
-    void OnDragEnd();
+    bool _isDragging { get; set; }
+    void PerformDrag(InputEventMouseMotion motionEvent);
 }
