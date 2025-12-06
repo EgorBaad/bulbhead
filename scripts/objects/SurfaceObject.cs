@@ -12,6 +12,8 @@ public partial class SurfaceObject : Node2D, IDraggable
 	/// </summary>
 	[Export]
 	public Sprite2D ObjectSprite;
+	[Export]
+	public bool IsDraggable = true;
 
 	public bool _isDragging { get; set; }
 
@@ -31,9 +33,13 @@ public partial class SurfaceObject : Node2D, IDraggable
 		AddToGroup("SurfaceObjects");
 		interactionArea.MouseEntered += OnMouseEntered;
 		interactionArea.MouseExited += OnMouseExited;
-		interactionArea.GuiInput += OnInteractionAreaGuiInput;
-		interactionArea.ButtonDown += () => { _isDragging = true; };
-		interactionArea.ButtonUp += () => { _isDragging = false; };
+
+		if (IsDraggable)
+		{
+			interactionArea.GuiInput += OnInteractionAreaGuiInput;
+			interactionArea.ButtonDown += () => { _isDragging = true; };
+			interactionArea.ButtonUp += () => { _isDragging = false; };
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
