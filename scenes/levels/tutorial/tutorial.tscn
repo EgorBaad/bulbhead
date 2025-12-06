@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://sw2jw0457no5"]
+[gd_scene load_steps=10 format=3 uid="uid://sw2jw0457no5"]
 
 [ext_resource type="PackedScene" uid="uid://by37peow3kepc" path="res://scenes/levels/level.tscn" id="1_6v5o0"]
 [ext_resource type="PackedScene" uid="uid://wsrtu312t4ud" path="res://scenes/player.tscn" id="2_kmgkv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cdfkc3r6g0ka0" path="res://assets/images/objects/common/doors/door_wooden_gray_open.png" id="4_m6rfe"]
 [ext_resource type="Texture2D" uid="uid://cwp5p8scluut7" path="res://assets/images/objects/common/doors/door_wooden_gray_closed.png" id="5_63nf7"]
 [ext_resource type="PackedScene" uid="uid://nl66iufv1rch" path="res://scenes/levels/tutorial/surfaces/table_surface.tscn" id="7_63nf7"]
+[ext_resource type="PackedScene" uid="uid://ciy504tvqvugu" path="res://scenes/objects/surface/key.tscn" id="9_mgrr2"]
 
 [node name="Tutorial" instance=ExtResource("1_6v5o0")]
 script = ExtResource("2_mxxi8")
@@ -24,6 +25,8 @@ position = Vector2(335, 349)
 position = Vector2(423, 345)
 
 [node name="TableSurface" parent="." index="1" instance=ExtResource("7_63nf7")]
-visible = false
+
+[node name="Key" parent="TableSurface" index="2" instance=ExtResource("9_mgrr2")]
+position = Vector2(571, 315)
 
 [connection signal="TableInteracted" from="Viewport/Table" to="." method="OnTableInteracted"]

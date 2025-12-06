@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://ciy504tvqvugu"]
+
+[ext_resource type="PackedScene" uid="uid://dooea1ut5wbrk" path="res://scenes/objects/surface_object.tscn" id="1_f2ao3"]
+[ext_resource type="Texture2D" uid="uid://cfbw67bpgirk4" path="res://assets/images/objects/surface/keys/key.png" id="2_kv0c5"]
+
+[node name="Key" node_paths=PackedStringArray("ObjectSprite") instance=ExtResource("1_f2ao3")]
+ObjectSprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_kv0c5")
+
+[node name="InteractionArea" parent="." index="1"]
+offset_left = -29.0
+offset_top = -11.0
+offset_right = 25.0
+offset_bottom = 11.0

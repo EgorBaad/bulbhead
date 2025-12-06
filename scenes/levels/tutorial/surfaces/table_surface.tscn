@@ -7,6 +7,5 @@
 SurfaceBackground = NodePath("Background")
 
 [node name="Background" type="Sprite2D" parent="." index="1"]
-z_index = 100
 position = Vector2(576, 320)
 texture = ExtResource("2_2bku8")
